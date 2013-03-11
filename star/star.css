@@ -1,0 +1,13 @@
+.icon-star{
+    display: inline-block;
+    width: 80px;
+    height: 16px;
+    overflow: hidden;
+    position: relative;
+    vertical-align: middle;
+    background-position: -199px -68px;
+}
+.icon-star i{
+    background-position: -119px -68px;
+    vertical-align: top;
+}
