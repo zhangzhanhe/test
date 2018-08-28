@@ -8,9 +8,7 @@ $(function(){
         }
         var starRates = options.starRates/5*80+"px";
         $(this).css("width",starRates);
-        // $(this).css({"width":starRates,"height":"100%"});
     }
-
     $("input").change(function(){
         $("i").starRate({"starRates":$("input").val()});
     });

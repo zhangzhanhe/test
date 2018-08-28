@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>横竖屏测试</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="keywords" content="" />
+    <meta name="description" content="" />
+	<meta http-equiv="cache-control" content="no-cache">
+</head>
+<body>
+<div class="main-wrapper">
+	<p class="context-w">文档宽度:<span></span></p>
+	<p class="context-h">文档高度:<span></span></p>
+	<p class="screen-w">屏幕宽度:<span></span></p>
+	<p class="screen-h">屏幕高度:<span></span></p>
+	<p class="screen-statue">屏幕状态:<span></span></p>
+</div>
+<script type="text/javascript">
+function landscapePrompt(){
+	//创建外围的dom
+	var promptDom = document.createElement('div');
+		promptDom.id = 'outlandscapePrompt';
+		promptDom.style.position = 'fixed';
+		promptDom.style.top = '0';
+		promptDom.style.bottom = '0';
+		promptDom.style.left = '0';
+		promptDom.style.right = '0';
+		promptDom.style.background = '#000';
+		promptDom.style.zIndex = '9999';
+	//常见内dom
+	var promptInnerDom = document.createElement('div');
+		promptInnerDom.id = 'innerlandscapePrompt';
+		promptInnerDom.style.position = 'absolute';
+		promptInnerDom.style.width = '100%';
+		promptInnerDom.style.top = '45%';
+		promptInnerDom.style.marginTop = '-75px';
+		promptInnerDom.style.textAlign = 'center';
+	//创建提示的图片
+	var promptImgDom = document.createElement('img');
+		promptImgDom.id = 'outlandscapeImgPrompt';
+		promptImgDom.style.width = '67px';
+		promptImgDom.style.height = '109px';
+		promptImgDom.style.transform = 'rotate(90deg)';
+		promptImgDom.style.webkitTransform = 'rotate(90deg)';
+		promptImgDom.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIYAAADaCAMAAABU68ovAAAAXVBMVEUAAAD29vb////x8fH////////x8fH5+fn29vby8vL////5+fn39/f6+vr////x8fH////////+/v7////09PT////x8fH39/f////////////////////x8fH///+WLTLGAAAAHXRSTlMAIpML+gb4ZhHWn1c2gvHBvq1uKJcC6k8b187lQ9yhhboAAAQYSURBVHja7d3blpowFIDhTUIAOchZDkre/zE7ycySrbUUpsRN2/1fzO18KzEqxEVgTiZNfgmmtxRc8iaR8HNe8x4BtjQePKayYCIoyBSgvNNE1AkNSHqZyLqk97EgUCCHBzZ5mkg7ScvIJuIyOyXBRFxgpqWZyGsAZLB1KjsJi8nutHU4JCRbFRH8tmirI9k8Jx2sqNs8K/m0LQkrktO2crgcgXGB4AiTEsB0hJfo9MGgX7CGcYiYwQxmMOOvZwRhBG8tCoMXjBDeXvWCEcHbi14wgCBmMIMZzGAGM5jxETNwzMAxA8cMHDNwzMAxA8cMHDNwzMAxA8cMHDNwzMAxY6E2rUQxnH2tz9cirlJFwFBJedaPnUv0M7++egPDE8iAJcIDmxwH5wwv9vUviw2kLbVO3TJU5uul/EyB0FoLp4x60PdGUd3qPurrWyjGGTc05u+1dcgI7/+tCCPARWGhH7o5Y7RCf+bH9ctXLp6v2BVDxfqz0oPXeSVaNtINo/1SXDv4dck8IIkbhtC2ol+iouEonTBCbYvVMnXOjxww6s/RFrBUpXHh/gw1rHj5d/qhYn9Gpk2FWh6xRBRX5Oj3Znh2Sq49/L6+y8pB26q9GbE2dbA2mVbx6I+7MfBglLCttm73ZQi7AD3iL4HqjFYJHSPRppqaUaJ3ATpGa+ckpGak2hRRMyqjGMkvl+xyFeSMwjAqcsZgGDdyhl0oNTnDN4yenJGZFGxNChP5/Y3efh6SM2rDOJMzboYxkDMqwyjIGcIw6F+io2FU1IxIm1JqRmgXSkvNKNCXeTpGrU0JNSO2c6LIGPgCS8AuDHz9ta0SXWDtxoDRH+MqlbC2Dt2G2JFRadtQZt2qq/orGowdGb2euxYiqWEpVWhTBnszoNAPdStuQwxqf0aocdWKW4Z+DfszIh8pxJqbuCE4YAC+4bm0evtipjpgJHeFnyyt1Ku2xa0bhjxr27p75rECNwyI9ZwvXkHq+7aTaMEV44YYy/spfgjgjNHaWW+GeUhGEX7tLlVinIFDDSgnOwhi1V6bU0b6tVS9eAERe863g4dRrtiHdc6o+nn5vtyVVgR79Cqt4uL6gfHPQyGqtP2vf7HADGbcYwaOGThm4JiBYwaOGThm4JiBYwaOGThm4JiBYwaOGThm4JiBYwaOGThm4JjhtOM+J/AgT008yDMkN/dPP9hzS8zAMQN3OEYeekp5YU7KOKXwVXqiY+QS7smcinGKABWdiBgpPJTSMHJ4KidhhPBUSMLw4CmPhKHgKUXCkHsygum71ftNSgCX6bsl8FQyfbcL5EdYsDk0R3j7aiA5wpt5AjKg/2gLJEBD/0Hf2OOf/vRrj6z/7GtP4B3nMKyjHA12kIPSjnJs3FEO0TvKkYJHOWCR+rjJH0Vn6fI5PjNbAAAAAElFTkSuQmCC';
+		promptImgDom.style.animation = 'landscapeRotation infinite 1.5s ease-in-out';
+		promptImgDom.style.webkitAnimation = 'landscapeRotation infinite 1.5s ease-in-out';
+
+	//创建文案
+	var promptDesDom = document.createElement('p');
+		promptDesDom.id = 'outlandscapeImgPrompt';
+		promptDesDom.style.marginTop = '20px';
+		promptDesDom.style.fontSize = '15px';
+		promptDesDom.style.color = '#fff';
+		promptDesDom.innerText = '为了更好的体验，请使用竖屏浏览';
+
+	//创建提示动画的style标签
+	var style = document.createElement('style');
+		style.type = 'text/css';
+		var textNode = document.createTextNode('@keyframes landscapeRotation{10%{transform:rotate(90deg);-webkit-transform:rotate(90deg)}50%{transform:rotate(0);-webkit-transform:rotate(0)}60%{transform:rotate(0);-webkit-transform:rotate(0)}90%{transform:rotate(90deg);-webkit-transform:rotate(90deg)}100%{transform:rotate(90deg);-webkit-transform:rotate(90deg)}}@-webkit-keyframes landscapeRotation{10%{transform:rotate(90deg);-webkit-transform:rotate(90deg)}50%{transform:rotate(0);-webkit-transform:rotate(0)}60%{transform:rotate(0);-webkit-transform:rotate(0)}90%{transform:rotate(90deg);-webkit-transform:rotate(90deg)}100%{transform:rotate(90deg);-webkit-transform:rotate(90deg)}}');
+		style.appendChild(textNode);
+        head = document.head || document.getElementsByTagName('head')[0];
+        head.appendChild(style);
+
+    //进行元素合并插入
+	promptInnerDom.appendChild(promptImgDom);
+	promptInnerDom.appendChild(promptDesDom);
+	promptDom.appendChild(promptInnerDom);
+	document.body.appendChild(promptDom);
+}
+function removeLandscapePrompt(){
+	if(document.querySelector('#outlandscapePrompt')){
+		document.body.removeChild(document.querySelector('#outlandscapePrompt'));
+	}
+}
+function detectOrient() {
+    var contextW = document.documentElement.clientWidth,
+        contextH = document.documentElement.clientHeight;
+    var screenW = window.screen.width,
+        screenH = window.screen.height;
+    document.querySelector('.context-w span').innerText = contextW;
+    document.querySelector('.context-h span').innerText = contextH;
+    document.querySelector('.screen-w span').innerText = screenW;
+    document.querySelector('.screen-h span').innerText = screenH;
+    if (contextW == screenH) {
+    	landscapePrompt();
+    	document.querySelector('.screen-statue span').innerText = '横屏';
+    }else{
+    	removeLandscapePrompt()
+    	document.querySelector('.screen-statue span').innerText = '竖屏';
+    }
+}
+detectOrient();
+window.addEventListener('resize', detectOrient);
+</script>
+</body>
+</html>
