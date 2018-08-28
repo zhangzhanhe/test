@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>测试一下自己的运气</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="keywords" content="" />
+    <meta name="description" content="" />
+	<meta http-equiv="cache-control" content="no-cache">
+	<style type="text/css">
+		input{-webkit-appearance: none;}
+		html,body,p,div,h2,span{margin: 0;padding: 0;}
+		.page-title{margin-top:40px;font-size:18px;line-height:24px;text-align:center;}
+		.main-wrapper{text-align:center;margin-top:18px;font-size:14px;}
+		.lucky-num{margin-top:8px;border:1px solid #ddd;padding:6px 12px;text-align:center;}
+		.lottery{margin-top:12px;background-color:#41aaf2;color:#fff;display:inline-block;padding:6px 24px;}
+		.test-times{margin-top:12px;}
+		.test-times span{margin:0 2px;width:24px;text-align:center;display:inline-block;}
+		.active-des{margin-top:40px;}
+		.active-des .des-title{font-size:16px;text-align:center;}
+		.active-des .des-list{margin-top:18px;list-style:none;padding:0 20px;font-size:12px;}
+		.active-des .des-item{margin-top:8px;}
+		.refresh{position:fixed;bottom:0;width:100%;background:#41aaf2;padding:12px 0;color:#fff;text-align:center;display:none;}
+	</style>
+</head>
+<body>
+	<h2 class="page-title">测试下您的运气</h2>
+	<div class="main-wrapper">
+		<p class="main-des">请输入您的幸运数字</p>
+		<input class="lucky-num" type="tel" maxlength="99"/><br/>
+		<div class="lottery">开始测试</div>
+		<div class="test-times">随机数<span class="rand-num">0</span>,随机了<span class="times-num">0</span>次</div>
+	</div>
+	<div class="active-des">
+		<h3 class="des-title">游戏说明</h3>
+		<ul class="des-list">
+			<li class="des-item">1、在输入框输入您的幸运数字(0-99),随后点击开始测试按钮;</li>
+			<li class="des-item">2、后台将会随机生成0-99的数字,若是生成的数字为您填写的幸运数字,则游戏结束,您中奖,否则系统继续生成随机数,直到生成的随机数为您填写的数字;</li>
+			<li class="des-item">3、游戏乐趣,测试下您的幸运数字,顺带体验一波中奖的感觉.</li>
+		</ul>
+	</div>
+	<div class="refresh">再来一次</div>
+	<script>
+		var num = 0;
+		var lotteryTimer;
+		var block;
+		document.querySelector('.lottery').onclick = function(){
+			var _this = this;
+			if(block){return false;}
+			block = true;
+			_this.style.backgroundColor = '#d1d5da';
+			_this.innerText = '测试中···';
+			var luckyNum = document.querySelector('.lucky-num').value;
+			lotteryTimer = setInterval(function(){
+				num++;
+				document.querySelector('.times-num').innerText = num; 
+				var randNum = Math.floor(Math.random()*100);
+				document.querySelector('.rand-num').innerText = randNum; 
+				if(randNum == luckyNum){
+					clearInterval(lotteryTimer);
+					_this.style.backgroundColor = '#f13d3d';
+					_this.innerText = '中奖了';
+					document.querySelector('.refresh').style.display = 'block';
+				}
+			},500)
+		}
+		document.querySelector('.refresh').onclick = function(){
+			location.reload();
+		}
+	</script>
+</body>
+</html>
