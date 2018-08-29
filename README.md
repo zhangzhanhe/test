@@ -25,3 +25,15 @@
 模块.
 
 参考阅读:[WebSocket教程](http://www.ruanyifeng.com/blog/2017/05/websocket.html)
+
+---
+
+#### spider,个人的一些爬虫小东东
+
+代码是用python3写的,一些杂七杂八的爬虫示例代码
+
+---
+
+#### fileHandle,文件处理代码
+
+代码是用python3写的,一些杂七杂八的有关文件操作的代码示例
