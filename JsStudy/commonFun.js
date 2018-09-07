@@ -272,5 +272,99 @@ function isEmptyObject(e) {
 }
 //手机号替换正则,可扩展到其他很多需要分割替换的场景
 '12345678901'.replace(/(\d{3})\d{4}(\d{4})/, '$1****$2');
+//XMLHttpRequest发送ajax请求的简单示例(不考虑兼容性问题)
+function sendAjax() {
+    //构造表单数据
+    var formData = new FormData();
+    formData.append('username', 'duanzhihe');
+    formData.append('id', 123456);
+    //创建xhr对象 
+    var xhr = new XMLHttpRequest();
+    //设置xhr请求的超时时间
+    xhr.timeout = 3000;
+    //设置响应返回的数据格式
+    xhr.responseType = "text";
+    //创建一个 post 请求，采用异步
+    xhr.open('POST', '/server', true);
+    //注册相关事件回调处理函数
+    xhr.onload = function(e) { 
+    if(this.status == 200||this.status == 304){
+        alert(this.responseText);
+    }
+    };
+    xhr.ontimeout = function(e) { ... };
+    xhr.onerror = function(e) { ... };
+    xhr.upload.onprogress = function(e) { ... };
+    //发送数据
+    xhr.send(formData);
+}
+//封装一个防止重复点击的方法,一个参数是表示防止重复点击的唯一hash标示,一个是回掉函数
+var repeatedClicksContainer = {}
+function preventRepeatedClick(domHash,callback){ //防止重复点击事件
+    if(repeatedClicksContainer.hasOwnProperty(domHash)){
+        window.repeatedClicksTimer && clearTimeout(repeatedClicksTimer)
+    }else{
+        repeatedClicksContainer[domHash] = true;
+        callback();
+    }
+    window.repeatedClicksTimer = setTimeout(function(){
+        delete repeatedClicksContainer[domHash];
+    },300)
+}
+//loading效果图
+var gobalLoading = {
+    show : function(){
+        if(!!document.querySelector('#epShowLoading')) return false;
+        //创建外部dom
+        var epShowLoading = document.createElement('div');
+        epShowLoading.id = 'epShowLoading';
+        epShowLoading.className = 'ep-show-loading';
 
+        //创建循环区块
+        var loaders = document.createElement('div');
+        loaders.className = 'ep-loaders';
+        for(var i = 0; i < 8; i ++){
+            loaders.appendChild(document.createElement('div'))
+        }
+        var loaderWrapper = document.createElement('div');
+        loaderWrapper.className = 'ep-loader-wrapper';
 
+        loaderWrapper.appendChild(loaders);
+        epShowLoading.appendChild(loaderWrapper);
+
+        //创建mask层
+        var epLoadingMask = document.createElement('div');
+        epLoadingMask.id = 'eploadingMask';
+        epLoadingMask.className = 'ep-loading-mask';
+
+        document.body.appendChild(epShowLoading);
+        document.body.appendChild(epLoadingMask);
+        //创建样式
+        var loadStyleDom = document.createElement('style');
+        loadStyleDom.type = 'text/css';
+        var _style_ = new Array();
+        _style_.push('.ep-show-loading{width: 100px; height: 120px; position: absolute; z-index: 999;top: 32%;left: 38%;right: 38%;}');
+        _style_.push('.ep-show-loading .ep-loader-wrapper{transition: opacity .25s linear;opacity: 1;width: 20%;max-width: 1000px;margin: 4em auto;}')
+        _style_.push('.ep-show-loading .ep-loaders{position: relative;}');
+        _style_.push('.ep-show-loading .ep-loaders > div{ background-color: #fff;width: 15px;height: 15px;border-radius: 100%;margin: 2px;-webkit-animation-fill-mode: both;animation-fill-mode: both;position: absolute;}')
+        _style_.push('.ep-show-loading .ep-loaders > div:nth-child(1){ top: 25px;left: 0;-webkit-animation: ball-spin-fade-loader 1s 0s infinite linear;animation: ball-spin-fade-loader 1s 0s infinite linear;}')
+        _style_.push('.ep-show-loading .ep-loaders > div:nth-child(2){ top: 17.04545px;left: 17.04545px;-webkit-animation: ball-spin-fade-loader 1s 0.12s infinite linear;animation: ball-spin-fade-loader 1s 0.12s infinite linear;}')
+        _style_.push('.ep-show-loading .ep-loaders > div:nth-child(3){ top: 0;left: 25px;-webkit-animation: ball-spin-fade-loader 1s 0.24s infinite linear;animation: ball-spin-fade-loader 1s 0.24s infinite linear;}')
+        _style_.push('.ep-show-loading .ep-loaders > div:nth-child(4){ top: -17.04545px;left: 17.04545px;-webkit-animation: ball-spin-fade-loader 1s 0.36s infinite linear;animation: ball-spin-fade-loader 1s 0.36s infinite linear;}')
+        _style_.push('.ep-show-loading .ep-loaders > div:nth-child(5){ top: -25px;left: 0;-webkit-animation: ball-spin-fade-loader 1s 0.48s infinite linear;animation: ball-spin-fade-loader 1s 0.48s infinite linear;}')
+        _style_.push('.ep-show-loading .ep-loaders > div:nth-child(6){ top: -17.04545px;left: -17.04545px;-webkit-animation: ball-spin-fade-loader 1s 0.6s infinite linear;animation: ball-spin-fade-loader 1s 0.6s infinite linear;}')
+        _style_.push('.ep-show-loading .ep-loaders > div:nth-child(7){ top: 0;left: -25px;-webkit-animation: ball-spin-fade-loader 1s 0.72s infinite linear;animation: ball-spin-fade-loader 1s 0.72s infinite linear;}')
+        _style_.push('.ep-show-loading .ep-loaders > div:nth-child(8){ top: 17.04545px;left: -17.04545px;-webkit-animation: ball-spin-fade-loader 1s 0.84s infinite linear;animation: ball-spin-fade-loader 1s 0.84s infinite linear;}')
+        _style_.push('@-webkit-keyframes ball-spin-fade-loader{50% {opacity: 0.3;-webkit-transform: scale(0.4);transform: scale(0.4);}100% {opacity: 1;-webkit-transform: scale(1);transform: scale(1);}}')
+        _style_.push('@keyframes ball-spin-fade-loader{50% {opacity: 0.3;-webkit-transform: scale(0.4);transform: scale(0.4);}100% {opacity: 1;-webkit-transform: scale(1);transform: scale(1);}}')
+        _style_.push('.ep-loading-mask{position: fixed;top: 0;left: 0;bottom: 0;right: 0;background-color: #000;opacity: 0.8;z-index: 10;}')
+        loadStyleDom.innerHTML= _style_.join('');
+        document.getElementsByTagName('head')[0].appendChild(loadStyleDom);
+    }
+    hide : function(){
+        if(!!document.querySelector('#epShowLoading')){
+            document.body.removeChild(document.querySelector('#epShowLoading'))
+            document.body.removeChild(document.querySelector('#eploadingMask'))
+        }
+    }
+}
