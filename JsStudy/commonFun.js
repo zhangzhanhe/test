@@ -127,26 +127,16 @@ function message(textMes,callback,timer){//弹窗函数
     var codeTip = document.createElement('div');
     timer = timer || 2000;
     codeTip.id = 'codetip';
-    codeTip.style.position = 'fixed';
-    codeTip.style.left = '10%';
-    codeTip.style.right = '10%';
-    codeTip.style.top = '200px';
-    codeTip.style.width = '80%';
-    codeTip.style.textAlign = 'center';
-    codeTip.style.fontSize = '16px';
-    codeTip.style.zIndex = '15';
+    codeTip.className = 'ep-code-tip-wrapper';
     //创建内部dom
     var codeTipInner = document.createElement('p');
-    codeTipInner.style.color = '#fff';
-    codeTipInner.style.display = 'inline-block';
-    codeTipInner.style.lineHeight = '24px';
-    codeTipInner.style.padding = '20px';
-    codeTipInner.style.background = '#000';
-    codeTipInner.style.borderRadius = '5px';
-    codeTipInner.style.opacity = '.8';
     codeTipInner.innerHTML = textMes;
+    codeTipInner.className = 'ep-code-tip-inner';
     //插入元素
     codeTip.appendChild(codeTipInner);
+    var cssStyle = '.ep-code-tip-wrapper{position:fixed;left:10%;right:10%;top:200px;width:80%;text-align:center;font-size:16px;z-index:15;}\
+    .ep-code-tip-inner{color:#fff;display:inline-block;line-height:24px;padding:8px 20px;background:#000;border-radius:5px;opacity:.8;}';
+    createStyleDom(cssStyle);
     document.body.appendChild(codeTip);
     //倒计时移除元素
     setTimeout(function(){
@@ -159,36 +149,20 @@ function confirmWin(options){
     //创建外部dom
     var epConfirm = document.createElement('div');
     epConfirm.id = 'epConfirm';
-    epConfirm.style.position = 'fixed';
-    epConfirm.style.zIndex = '500';
-    epConfirm.style.top = '200px';
-    epConfirm.style.left = '50%';
-    epConfirm.style.marginLeft = '-140px';
-    epConfirm.style.width = '280px';
-    epConfirm.style.backgroundColor = '#fff';
-    epConfirm.style.textAlign = 'center';
-    epConfirm.style.borderRadius = '5px';
+    epConfirm.className = 'ep-confirm-wrapper';
     //创建confirmDes的文字描述区域
     var epConfirmDes = document.createElement('div');
     epConfirmDes.id = 'confirmDes';
-    epConfirmDes.style.padding = '20px';
-    epConfirmDes.style.lineHeight = '24px';
-    epConfirmDes.style.fontSize = '14px';
+    epConfirmDes.className = 'ep-confirm-des';
     epConfirmDes.innerHTML = options.text;
     //创建按钮区域
     var epConfirmBtn = document.createElement('div');
     epConfirmBtn.id = 'confirmSelect';
-    epConfirmBtn.style.height = '40px';
-    epConfirmBtn.style.lineHeight = '40px';
-    epConfirmBtn.style.fontSize = '14px';
-    epConfirmBtn.style.borderTop = '1px solid #ddd';
+    epConfirmBtn.className = 'ep-confirm-select';
     //创建按钮区域
     var confirmSelectCancel = document.createElement('div');
     confirmSelectCancel.id = 'confirmSelectCancel';
-    confirmSelectCancel.style.width = '50%';
-    confirmSelectCancel.style.float = 'left';
-    confirmSelectCancel.style.borderRight = '1px solid #ddd';
-    confirmSelectCancel.style.boxSizing = 'border-box';
+    confirmSelectCancel.className = 'ep-confirm-select-cancel';
     confirmSelectCancel.innerText = options.cancelText;
     confirmSelectCancel.onclick = function(){
         if(options.callback){
@@ -201,9 +175,7 @@ function confirmWin(options){
     //创建按钮区域
     var confirmSelectSure = document.createElement('div');
     confirmSelectSure.id = 'confirmSelectSure';
-    confirmSelectSure.style.width = '50%';
-    confirmSelectSure.style.float = 'right';
-    confirmSelectSure.style.color = '#41aaf2';
+    confirmSelectSure.className = 'ep-confirm-select-sure';
     confirmSelectSure.innerText = options.cancelSure;
     confirmSelectSure.onclick = function(){
         if(options.mCallBack){
@@ -217,12 +189,7 @@ function confirmWin(options){
     if(options.showClose){
         var closeConfirm = document.createElement('div');
         closeConfirm.id = 'closeConfirm';
-        closeConfirm.style.width = '40px';
-        closeConfirm.style.position = 'absolute';
-        closeConfirm.style.top = '0';
-        closeConfirm.style.right = '0';
-        closeConfirm.style.color = '#999';
-        closeConfirm.style.fontSize = '26px';
+        closeConfirm.className = 'ep-close-confirm';
         closeConfirm.innerText = '×';
         closeConfirm.onclick = function(){
             document.body.removeChild(document.querySelectorAll('#epConfirm')[0]);
@@ -233,30 +200,30 @@ function confirmWin(options){
     //隐藏层
     var epMask = document.createElement('div');
     epMask.id = 'epMask';
-    epMask.style.position = 'fixed';
-    epMask.style.bottom = '0';
-    epMask.style.top = '0';
-    epMask.style.left = '0';
-    epMask.style.right = '0';
-    epMask.style.background = 'rgba(0,0,0,.5)';
+    epMask.className = 'ep-confirm-mask';
     //判断是否是有双按钮
     if(options.cancelText){
         epConfirmBtn.appendChild(confirmSelectCancel);
     }else{
-        confirmSelectSure.style.width = '100%';
+        confirmSelectSure.className = 'ep-confirm-select-sure single';
     }
     //判断若是有title,显示title
     if(options.epConfirmTitle){
         var epConfirmTitle = document.createElement('h3');
-        epConfirmTitle.id = 'epConfirmTitle';
-        epConfirmTitle.style.width = '100%';
-        epConfirmTitle.style.paddingTop = '14px';
-        epConfirmTitle.style.color = '#333';
-        epConfirmTitle.style.fontSize = '18px';
-        epConfirmTitle.style.fontWeight = 'bold';
         epConfirmTitle.innerText = options.epConfirmTitle;
         epConfirm.appendChild(epConfirmTitle);
     }
+    //创建style标签
+    var cssStyle = '.ep-confirm-wrapper{position:fixed;z-index:500;top:200px;left:50%;margin-left:-140px;width:280px;background-color:rgb(255,255,255);text-align:center;border-radius:5px;}\
+    .ep-confirm-des{padding:20px;line-height:24px;font-size:14px;}\
+    .ep-confirm-select{height:40px;line-height:40px;font-size:14px;border-top:1px solid rgb(221,221,221);}\
+    .ep-confirm-select-sure{width:50%;float:right;color:#41aaf2;}\
+    .ep-confirm-select-sure.single{width:100%;}\
+    .ep-confirm-select-cancel{width:50%;float:left;border-right:1px solid #ddd;color:#41aaf2;box-sizing:border-box;-webkit-box-sizng:border-box;}\
+    .ep-close-confirm{width:40px;position:absolute;top:0;right:0;color:#999;font-size:26px;}\
+    .ep-confirm-mask{position:fixed;bottom:0;top:0;left:0;right:0;background:rgba(0,0,0,.5);}\
+    .ep-confirm-title{width:100%;padding-top:14px;color:#333;font-size:18px;font-weight:bold;}';
+    EP.createStyleDom(cssStyle);
     epConfirmBtn.appendChild(confirmSelectSure);
     epConfirm.appendChild(epConfirmDes);
     epConfirm.appendChild(epConfirmBtn);
@@ -311,55 +278,56 @@ function preventRepeatedClick(domHash,callback){ //防止重复点击事件
         delete repeatedClicksContainer[domHash];
     },300)
 }
+//插入style标签
+function createStyleDom(cssStyle){
+    var loadStyleDom = document.createElement('style');
+    loadStyleDom.type = 'text/css';
+    loadStyleDom.innerHTML = cssStyle;
+    document.getElementsByTagName('head')[0].appendChild(loadStyleDom);
+}
 //loading效果图
 var gobalLoading = {
     show : function(){
-        if(!!document.querySelector('#epShowLoading')) return false;
+        if (!!document.querySelector('#epShowLoading')) return false;
         //创建外部dom
         var epShowLoading = document.createElement('div');
         epShowLoading.id = 'epShowLoading';
         epShowLoading.className = 'ep-show-loading';
-
         //创建循环区块
         var loaders = document.createElement('div');
         loaders.className = 'ep-loaders';
-        for(var i = 0; i < 8; i ++){
+        for (var i = 0; i < 8; i++) {
             loaders.appendChild(document.createElement('div'))
         }
         var loaderWrapper = document.createElement('div');
         loaderWrapper.className = 'ep-loader-wrapper';
-
+        //插入dom
         loaderWrapper.appendChild(loaders);
         epShowLoading.appendChild(loaderWrapper);
-
-        //创建mask层
+        //创建样式
+        var cssStyle = '.ep-show-loading{width: 100px; height: 120px; position: absolute; z-index: 999;top: 32%;left: 38%;right: 38%;}\
+        .ep-show-loading .ep-loader-wrapper{transition: opacity .25s linear;opacity: 1;width: 20%;max-width: 1000px;margin: 4em auto;}\
+        .ep-show-loading .ep-loaders{position: relative;}\
+        .ep-show-loading .ep-loaders > div{ background-color: #fff;width: 15px;height: 15px;border-radius: 100%;margin: 2px;-webkit-animation-fill-mode: both;animation-fill-mode: both;position: absolute;}\
+        .ep-show-loading .ep-loaders > div:nth-child(1){ top: 25px;left: 0;-webkit-animation: ball-spin-fade-loader 1s 0s infinite linear;animation: ball-spin-fade-loader 1s 0s infinite linear;}\
+        .ep-show-loading .ep-loaders > div:nth-child(2){ top: 17.04545px;left: 17.04545px;-webkit-animation: ball-spin-fade-loader 1s 0.12s infinite linear;animation: ball-spin-fade-loader 1s 0.12s infinite linear;}\
+        .ep-show-loading .ep-loaders > div:nth-child(3){ top: 0;left: 25px;-webkit-animation: ball-spin-fade-loader 1s 0.24s infinite linear;animation: ball-spin-fade-loader 1s 0.24s infinite linear;}\
+        .ep-show-loading .ep-loaders > div:nth-child(4){ top: -17.04545px;left: 17.04545px;-webkit-animation: ball-spin-fade-loader 1s 0.36s infinite linear;animation: ball-spin-fade-loader 1s 0.36s infinite linear;}\
+        .ep-show-loading .ep-loaders > div:nth-child(5){ top: -25px;left: 0;-webkit-animation: ball-spin-fade-loader 1s 0.48s infinite linear;animation: ball-spin-fade-loader 1s 0.48s infinite linear;}\
+        .ep-show-loading .ep-loaders > div:nth-child(6){ top: -17.04545px;left: -17.04545px;-webkit-animation: ball-spin-fade-loader 1s 0.6s infinite linear;animation: ball-spin-fade-loader 1s 0.6s infinite linear;}\
+        .ep-show-loading .ep-loaders > div:nth-child(7){ top: 0;left: -25px;-webkit-animation: ball-spin-fade-loader 1s 0.72s infinite linear;animation: ball-spin-fade-loader 1s 0.72s infinite linear;}\
+        .ep-show-loading .ep-loaders > div:nth-child(8){ top: 17.04545px;left: -17.04545px;-webkit-animation: ball-spin-fade-loader 1s 0.84s infinite linear;animation: ball-spin-fade-loader 1s 0.84s infinite linear;}\
+        @-webkit-keyframes ball-spin-fade-loader{50% {opacity: 0.3;-webkit-transform: scale(0.4);transform: scale(0.4);}100% {opacity: 1;-webkit-transform: scale(1);transform: scale(1);}}\
+        @keyframes ball-spin-fade-loader{50% {opacity: 0.3;-webkit-transform: scale(0.4);transform: scale(0.4);}100% {opacity: 1;-webkit-transform: scale(1);transform: scale(1);}}\
+        .ep-loading-mask{position: fixed;top: 0;left: 0;bottom: 0;right: 0;background-color: #000;opacity: 0.8;z-index: 10;}'
+        createStyleDom(cssStyle);
+        //创建mask
         var epLoadingMask = document.createElement('div');
         epLoadingMask.id = 'eploadingMask';
         epLoadingMask.className = 'ep-loading-mask';
-
+        //插入到body
         document.body.appendChild(epShowLoading);
         document.body.appendChild(epLoadingMask);
-        //创建样式
-        var loadStyleDom = document.createElement('style');
-        loadStyleDom.type = 'text/css';
-        var _style_ = new Array();
-        _style_.push('.ep-show-loading{width: 100px; height: 120px; position: absolute; z-index: 999;top: 32%;left: 38%;right: 38%;}');
-        _style_.push('.ep-show-loading .ep-loader-wrapper{transition: opacity .25s linear;opacity: 1;width: 20%;max-width: 1000px;margin: 4em auto;}')
-        _style_.push('.ep-show-loading .ep-loaders{position: relative;}');
-        _style_.push('.ep-show-loading .ep-loaders > div{ background-color: #fff;width: 15px;height: 15px;border-radius: 100%;margin: 2px;-webkit-animation-fill-mode: both;animation-fill-mode: both;position: absolute;}')
-        _style_.push('.ep-show-loading .ep-loaders > div:nth-child(1){ top: 25px;left: 0;-webkit-animation: ball-spin-fade-loader 1s 0s infinite linear;animation: ball-spin-fade-loader 1s 0s infinite linear;}')
-        _style_.push('.ep-show-loading .ep-loaders > div:nth-child(2){ top: 17.04545px;left: 17.04545px;-webkit-animation: ball-spin-fade-loader 1s 0.12s infinite linear;animation: ball-spin-fade-loader 1s 0.12s infinite linear;}')
-        _style_.push('.ep-show-loading .ep-loaders > div:nth-child(3){ top: 0;left: 25px;-webkit-animation: ball-spin-fade-loader 1s 0.24s infinite linear;animation: ball-spin-fade-loader 1s 0.24s infinite linear;}')
-        _style_.push('.ep-show-loading .ep-loaders > div:nth-child(4){ top: -17.04545px;left: 17.04545px;-webkit-animation: ball-spin-fade-loader 1s 0.36s infinite linear;animation: ball-spin-fade-loader 1s 0.36s infinite linear;}')
-        _style_.push('.ep-show-loading .ep-loaders > div:nth-child(5){ top: -25px;left: 0;-webkit-animation: ball-spin-fade-loader 1s 0.48s infinite linear;animation: ball-spin-fade-loader 1s 0.48s infinite linear;}')
-        _style_.push('.ep-show-loading .ep-loaders > div:nth-child(6){ top: -17.04545px;left: -17.04545px;-webkit-animation: ball-spin-fade-loader 1s 0.6s infinite linear;animation: ball-spin-fade-loader 1s 0.6s infinite linear;}')
-        _style_.push('.ep-show-loading .ep-loaders > div:nth-child(7){ top: 0;left: -25px;-webkit-animation: ball-spin-fade-loader 1s 0.72s infinite linear;animation: ball-spin-fade-loader 1s 0.72s infinite linear;}')
-        _style_.push('.ep-show-loading .ep-loaders > div:nth-child(8){ top: 17.04545px;left: -17.04545px;-webkit-animation: ball-spin-fade-loader 1s 0.84s infinite linear;animation: ball-spin-fade-loader 1s 0.84s infinite linear;}')
-        _style_.push('@-webkit-keyframes ball-spin-fade-loader{50% {opacity: 0.3;-webkit-transform: scale(0.4);transform: scale(0.4);}100% {opacity: 1;-webkit-transform: scale(1);transform: scale(1);}}')
-        _style_.push('@keyframes ball-spin-fade-loader{50% {opacity: 0.3;-webkit-transform: scale(0.4);transform: scale(0.4);}100% {opacity: 1;-webkit-transform: scale(1);transform: scale(1);}}')
-        _style_.push('.ep-loading-mask{position: fixed;top: 0;left: 0;bottom: 0;right: 0;background-color: #000;opacity: 0.8;z-index: 10;}')
-        loadStyleDom.innerHTML= _style_.join('');
-        document.getElementsByTagName('head')[0].appendChild(loadStyleDom);
     }
     hide : function(){
         if(!!document.querySelector('#epShowLoading')){
@@ -367,4 +335,55 @@ var gobalLoading = {
             document.body.removeChild(document.querySelector('#eploadingMask'))
         }
     }
+}
+//去掉数组空元素
+[undefined,undefined,1,'','false',false,true,null,'null'].filter(d=>d);
+//横屏检测
+function checkHorizontalScreen checkHorizontalScreen(){
+    function landscapePrompt(){
+        //创建外围的dom
+        var promptDom = document.createElement('div');
+            promptDom.id = 'epOutlandscapePrompt';
+        //常见内dom
+        var promptInnerDom = document.createElement('div');
+            promptInnerDom.id = 'epInnerlandscapePrompt';
+        //创建提示的图片
+        var promptImgDom = document.createElement('img');
+            promptImgDom.id = 'epOutlandscapeImgPrompt';
+            promptImgDom.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIYAAADaCAMAAABU68ovAAAAXVBMVEUAAAD29vb////x8fH////////x8fH5+fn29vby8vL////5+fn39/f6+vr////x8fH////////+/v7////09PT////x8fH39/f////////////////////x8fH///+WLTLGAAAAHXRSTlMAIpML+gb4ZhHWn1c2gvHBvq1uKJcC6k8b187lQ9yhhboAAAQYSURBVHja7d3blpowFIDhTUIAOchZDkre/zE7ycySrbUUpsRN2/1fzO18KzEqxEVgTiZNfgmmtxRc8iaR8HNe8x4BtjQePKayYCIoyBSgvNNE1AkNSHqZyLqk97EgUCCHBzZ5mkg7ScvIJuIyOyXBRFxgpqWZyGsAZLB1KjsJi8nutHU4JCRbFRH8tmirI9k8Jx2sqNs8K/m0LQkrktO2crgcgXGB4AiTEsB0hJfo9MGgX7CGcYiYwQxmMOOvZwRhBG8tCoMXjBDeXvWCEcHbi14wgCBmMIMZzGAGM5jxETNwzMAxA8cMHDNwzMAxA8cMHDNwzMAxA8cMHDNwzMAxY6E2rUQxnH2tz9cirlJFwFBJedaPnUv0M7++egPDE8iAJcIDmxwH5wwv9vUviw2kLbVO3TJU5uul/EyB0FoLp4x60PdGUd3qPurrWyjGGTc05u+1dcgI7/+tCCPARWGhH7o5Y7RCf+bH9ctXLp6v2BVDxfqz0oPXeSVaNtINo/1SXDv4dck8IIkbhtC2ol+iouEonTBCbYvVMnXOjxww6s/RFrBUpXHh/gw1rHj5d/qhYn9Gpk2FWh6xRBRX5Oj3Znh2Sq49/L6+y8pB26q9GbE2dbA2mVbx6I+7MfBglLCttm73ZQi7AD3iL4HqjFYJHSPRppqaUaJ3ATpGa+ckpGak2hRRMyqjGMkvl+xyFeSMwjAqcsZgGDdyhl0oNTnDN4yenJGZFGxNChP5/Y3efh6SM2rDOJMzboYxkDMqwyjIGcIw6F+io2FU1IxIm1JqRmgXSkvNKNCXeTpGrU0JNSO2c6LIGPgCS8AuDHz9ta0SXWDtxoDRH+MqlbC2Dt2G2JFRadtQZt2qq/orGowdGb2euxYiqWEpVWhTBnszoNAPdStuQwxqf0aocdWKW4Z+DfszIh8pxJqbuCE4YAC+4bm0evtipjpgJHeFnyyt1Ku2xa0bhjxr27p75rECNwyI9ZwvXkHq+7aTaMEV44YYy/spfgjgjNHaWW+GeUhGEX7tLlVinIFDDSgnOwhi1V6bU0b6tVS9eAERe863g4dRrtiHdc6o+nn5vtyVVgR79Cqt4uL6gfHPQyGqtP2vf7HADGbcYwaOGThm4JiBYwaOGThm4JiBYwaOGThm4JiBYwaOGThm4JiBYwaOGThm4JjhtOM+J/AgT008yDMkN/dPP9hzS8zAMQN3OEYeekp5YU7KOKXwVXqiY+QS7smcinGKABWdiBgpPJTSMHJ4KidhhPBUSMLw4CmPhKHgKUXCkHsygum71ftNSgCX6bsl8FQyfbcL5EdYsDk0R3j7aiA5wpt5AjKg/2gLJEBD/0Hf2OOf/vRrj6z/7GtP4B3nMKyjHA12kIPSjnJs3FEO0TvKkYJHOWCR+rjJH0Vn6fI5PjNbAAAAAElFTkSuQmCC';
+        //创建文案
+        var promptDesDom = document.createElement('p');
+            promptDesDom.id = 'epOutlandscapeDesPrompt';
+            promptDesDom.innerText = '为了更好的体验，请使用竖屏浏览';
+        //创建提示动画的style标签
+        var cssStyle = '#epOutlandscapePrompt{position:fixed;top:0;bottom:0;left:0;right:0;background:#000;z-index:9999;}\
+            #epInnerlandscapePrompt{position:absolute;width:100%;top:45%;margin-top:-75px;text-align:center;}\
+            #epOutlandscapeImgPrompt{width:67px;height:109px;transform:rotate(90deg);-webkit-transform:rotate(90deg);animation:landscapeRotation infinite 1.5s ease-in-out;-webkit-animation:landscapeRotation infinite 1.5s ease-in-out;}\
+            #epOutlandscapeDesPrompt{margin-top:20px;font-size:15px;color:#fff;}\
+            @keyframes landscapeRotation{10%{transform:rotate(90deg);-webkit-transform:rotate(90deg)}50%{transform:rotate(0);-webkit-transform:rotate(0)}60%{transform:rotate(0);-webkit-transform:rotate(0)}90%{transform:rotate(90deg);-webkit-transform:rotate(90deg)}100%{transform:rotate(90deg);-webkit-transform:rotate(90deg)}}@-webkit-keyframes landscapeRotation{10%{transform:rotate(90deg);-webkit-transform:rotate(90deg)}50%{transform:rotate(0);-webkit-transform:rotate(0)}60%{transform:rotate(0);-webkit-transform:rotate(0)}90%{transform:rotate(90deg);-webkit-transform:rotate(90deg)}100%{transform:rotate(90deg);-webkit-transform:rotate(90deg)}}';
+        EP.createStyleDom(cssStyle);
+        //进行元素合并插入
+        promptInnerDom.appendChild(promptImgDom);
+        promptInnerDom.appendChild(promptDesDom);
+        promptDom.appendChild(promptInnerDom);
+        document.body.appendChild(promptDom);
+    }
+    function removeLandscapePrompt(){
+        if(document.querySelector('#epOutlandscapePrompt')){
+            document.body.removeChild(document.querySelector('#epOutlandscapePrompt'));
+        }
+    }
+    function detectOrient() {
+        var contextW = document.documentElement.clientWidth,
+            contextH = document.documentElement.clientHeight;
+        var screenW = window.screen.width,
+            screenH = window.screen.height;
+        if (contextW == screenH) {
+            landscapePrompt();
+        }else{
+            removeLandscapePrompt()
+        }
+    }
+    detectOrient();
+    window.addEventListener('resize', detectOrient);
 }
