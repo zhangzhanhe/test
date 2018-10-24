@@ -387,3 +387,5 @@ function checkHorizontalScreen checkHorizontalScreen(){
     detectOrient();
     window.addEventListener('resize', detectOrient);
 }
+//去掉url中的某个字段
+var searchStr = location.search.replace(/[?|&]paramsOne=[^&]+/,'');
