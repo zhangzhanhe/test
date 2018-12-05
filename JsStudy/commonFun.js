@@ -389,3 +389,5 @@ function checkHorizontalScreen checkHorizontalScreen(){
 }
 //去掉url中的某个字段
 var searchStr = location.search.replace(/[?|&]paramsOne=[^&]+/,'');
+//将var params = {a: 1,b: 2,c: 3};转成"a=1&b=2&c=3"
+var queryString = Object.keys(params).map(key => key + '=' + params[key]).join('&');  //es6的方法
