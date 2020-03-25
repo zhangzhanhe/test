@@ -391,3 +391,45 @@ function checkHorizontalScreen checkHorizontalScreen(){
 var searchStr = location.search.replace(/[?|&]paramsOne=[^&]+/,'');
 //将var params = {a: 1,b: 2,c: 3};转成"a=1&b=2&c=3"
 var queryString = Object.keys(params).map(key => key + '=' + params[key]).join('&');  //es6的方法
+//生成包含制定字符和长度的数组,示例中为100长度的数组
+[...Array(100)].map(_=>'测试') //es6的方法
+Array.from({ length: 100 }, () => 'jack') //es6的方法
+new Array(100).fill('测试') //es6的方法
+array = '测试,'.repeat(100).split(','); array.pop(); //es6的方法
+array = new Array(101).join('测试,').split(','); array.pop(); //老方法
+function dedupe(array){return Array.from(new Set(array));} //数组去重
+[...new Set(arr)]//数组去重
+new Set([...a, ...b]) //数组合并
+new Set([...a].filter(x => b.has(x))); //数组求交集
+new Set([...a].filter(x => !b.has(x))); //数组求差级
+new Set(Array.from(set, val => val * 2)); //set方法计算
+function paramsToUrl(obj) {    //对象转url参数方法
+    let urlStr = '?';
+    for (let key of Object.keys(obj)) {
+        urlStr+=(key+'='+obj[key]+'&');
+    }
+    return urlStr;
+}
+//判断类型
+function checkType(val){
+    return typeof val === 'object' ? Object.prototype.toString.call(val) : typeof val;
+}
+//格式化时间和日期
+dateFormat = str => str.replace(/-/g,'.');
+dateFormat = str => str.split('-').join('.')
+//首字母大写的es6
+upperFirst = ([first, ...rest]) => first.toUpperCase() + rest.join('');
+//首字母小写的es5
+function upperFirst(word){
+    return word.replace(/^\S/g,function(s){return s.toUpperCase();});
+}
+//防止重复触发
+var debounceTimer;
+function debounce(fn,ms=0,...args){
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => fn.bind(this, arguments)(),ms);
+}
+//Promise的简单示例
+let getData = new Promise((resolve, reject)=> {
+  setTimeout(resolve,3000,'done');
+});
