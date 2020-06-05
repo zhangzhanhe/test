@@ -414,6 +414,9 @@ function paramsToUrl(obj) {    //对象转url参数方法
 function checkType(val){
     return typeof val === 'object' ? Object.prototype.toString.call(val) : typeof val;
 }
+//复制一个数组
+let arr = [1,2,3];
+let newArr = arr.slice();
 //格式化时间和日期
 dateFormat = str => str.replace(/-/g,'.');
 dateFormat = str => str.split('-').join('.')
@@ -433,3 +436,18 @@ function debounce(fn,ms=0,...args){
 let getData = new Promise((resolve, reject)=> {
   setTimeout(resolve,3000,'done');
 });
+//获取月份所在的天数
+function getMonthDays(time){
+    let dateObject = new Date(time);
+    let year = dateObject.getFullYear();
+    let month = dateObject.getMonth();
+    if(type == 1){  //1指的是起始时间
+        month = month + 1;
+    }else{
+        if(month == 0){
+            year = year - 1;
+            month = 12;
+        }
+    }
+    return new Date(year,month,0).getDate();
+}
