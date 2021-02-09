@@ -62,6 +62,10 @@ console.log(compareVersion("1.0", "0.0.5")); //1
 //去掉元素最后一位
 '1234567'.slice(0,-1);
 
+//对象截取
+const obj2 = (({a,b,d})=>({a,b,d}))(obj)
+const obj2 = arr.reduce((iter, val) => (val in obj && (iter[val] = obj[val]), iter), {})
+
 //图片转成base64图片,首先,你需要有一个input
 document.querySelector('#testFile').onchange = function(){
     var reader = new FileReader();
@@ -394,6 +398,10 @@ var queryString = Object.keys(params).map(key => key + '=' + params[key]).join('
 //生成包含制定字符和长度的数组,示例中为100长度的数组
 [...Array(100)].map(_=>'测试') //es6的方法
 Array.from({ length: 100 }, () => 'jack') //es6的方法
+//数组克隆
+function clone(arr){
+    return Array.isArray(arr) ? Array.from(arr, clone) : arr;
+}
 new Array(100).fill('测试') //es6的方法
 array = '测试,'.repeat(100).split(','); array.pop(); //es6的方法
 array = new Array(101).join('测试,').split(','); array.pop(); //老方法

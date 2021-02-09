@@ -1,0 +1,11 @@
+{
+	"name": "myCode",
+	"description" : "my password",
+	"version": "0.0.2",
+	"manifest_version": 2,
+	"permissions": ["storage"],
+	"browser_action": {
+	  "default_popup" : "popup.html",
+	  "default_icon" : "password.png"
+	}
+}
