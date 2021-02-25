@@ -1,0 +1,25 @@
+body,html{
+	margin: 0;
+	padding: 0;
+	min-height: 400px;
+	width: 300px;
+}
+*, :before, :after {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box
+}
+.tool-item{
+	margin: 15px 0 0 15px;
+	padding: 0 15px;
+	display: inline-block;
+    color: #fff;
+    background: #4997fb;
+    border-radius: 5px;
+    font-size: 14px;
+    height: 36px;
+    line-height: 36px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+}

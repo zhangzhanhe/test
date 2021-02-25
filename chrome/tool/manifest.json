@@ -1,0 +1,17 @@
+{
+	"name": "tool",
+	"description" : "tool collection",
+	"version": "0.0.2",
+	"manifest_version": 2,
+	"permissions": ["tabs","storage"],
+	"browser_action": {
+	  "default_popup" : "popup.html",
+	  "default_icon" : "tool.png"
+	},
+	"content_scripts": [{
+        "matches": ["*://*/*"],
+        "js": [
+            "content-script.js"
+        ]
+    }]
+}

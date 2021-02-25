@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>工作页</title>
+	<meta charset=UTF-8>
+	<meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
+	<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
+	<meta name=apple-mobile-web-app-capable content=yes>
+	<meta name=format-detection content="telephone=no">
+	<meta name=keywords content="">
+	<meta name=description content="">
+	<meta http-equiv=cache-control content=no-cache>
+	<link rel="stylesheet" type="text/css" href="./newtab.css"/>
+</head>
+<body>
+	<div class="page-style">
+		<div class="action-wrapper">
+			<a id="exportJson" class="btn-item" download="bookmark.json">导出</a>
+			<div id="addSite" class="btn-item">新建</div>
+		</div>
+		<div class="site-list"></div>
+	</div>
+	<div class="add-pop pop-item">
+		<input type="text" class="input-item" id="addName" placeholder="请输入名称" />
+		<input type="text" class="input-item" id="addUrl" placeholder="请输入url"/>
+		<div class="btn-item" id="saveBtn">保存</div>
+	</div>
+	<div class="del-pop pop-item">
+		<div class="pop-des">确认要删除吗？</div>
+		<div class="btn-item" id="delBtn">删除</div>
+	</div>
+	<div class="mask"></div>
+	<script src="./jquery.js"></script>
+	<script src="./newtab.js"></script>
+</body>
+</html>
