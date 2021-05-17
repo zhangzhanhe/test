@@ -1,0 +1,72 @@
+.nav-list{
+	display: flex;
+	padding: 0 30rpx 10rpx;
+	line-height: 120rpx;
+	justify-content: space-between;
+	border-bottom: 1rpx solid #f0f0f0;
+	font-size: 36rpx;
+	font-weight: bold;
+}
+.nav-list .nav-item{
+	position: relative;
+}
+.nav-list .nav-item::after{
+	content: '';
+	position: absolute;
+	bottom: 0rpx;
+	background: transparent;
+	display: inline-block;
+	height: 6rpx;
+	width: 40rpx;
+	left: 50%;
+	transform: translateX(-50%);
+}
+.nav-list .nav-item.active{
+	color: #3072f6;
+}
+.nav-list .nav-item.active::after{
+	background: #3072f6;
+}
+.method-list{
+	padding: 0 30rpx;
+}
+.method-list .method-item{
+	display: flex;
+	padding: 30rpx 0;
+	font-size: 28rpx;
+	line-height: 40rpx;
+	justify-content: flex-start;
+	border-bottom: 1rpx solid #f0f0f0;
+}
+.method-list .method-item .m-i-i-name{
+	font-weight: bold;
+	width: 200rpx;
+}
+.method-list .method-item .m-i-i-value{
+	flex-grow: 1;
+	display: flex;
+	justify-content: space-between;
+}
+.method-list .method-item .m-i-i-v-name:last-child{
+	margin-left: 30rpx;
+}
+.method-list .method-item .m-i-i-v-radio{
+	transform: scale(0.8);
+}
+.method-list .method-item .m-i-i-input{
+	width:350rpx;
+	height: 40rpx;
+}
+.method-item .m-i-i-value .m-i-i-unit{
+	color: #999;
+}
+.cal-btn{
+	margin: 80rpx 30rpx 0;
+	background: #3072f6;
+	height: 100rpx;
+	line-height: 100rpx;
+	text-align: center;
+	color: #fff;
+	font-size: 32rpx;
+	border-radius: 10rpx;
+}

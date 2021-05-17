@@ -1,0 +1,64 @@
+<!--index.wxml-->
+<view class="container">
+  <!-- <view class="nav-list">
+    <view class="nav-item active">商业贷款</view>
+    <view class="nav-item">公积金贷款</view>
+    <view class="nav-item">组合贷款</view>
+  </view> -->
+  <view class="method-list">
+    <view class="method-item">
+      <view class="m-i-i-name">计算方式</view>
+      <view class="m-i-i-value">
+        <radio-group bindchange="calMethod">
+          <label class="m-i-i-v-name">
+            <radio value="1" checked="true" class="m-i-i-v-radio" color="#3072f6"/>
+            <text>按贷款总额</text>
+          </label>
+          <label class="m-i-i-v-name">
+            <radio value="2" class="m-i-i-v-radio" color="#3072f6"/>
+            <text>按房屋总价</text>
+          </label>
+        </radio-group>
+      </view>
+    </view>
+    <block wx:if="{{methodInfo.methodType == 2}}">
+      <view class="method-item">
+        <view class="m-i-i-name">房屋总价</view>
+        <view class="m-i-i-value">
+          <input class="m-i-i-input" model:value="{{houseMoney}}" bindinput="houseChange" placeholder="0"/>
+          <text class="m-i-i-unit">万</text>
+        </view>
+      </view>
+      <view class="method-item">
+        <view class="m-i-i-name">贷款比例</view>
+        <view class="m-i-i-value">
+          <input class="m-i-i-input" model:value="{{loanRate}}" bindinput="houseChange" />
+          <text class="m-i-i-unit">成</text>
+        </view>
+      </view>
+    </block>
+    <view class="method-item">
+      <view class="m-i-i-name">商贷金额</view>
+      <view class="m-i-i-value">
+        <input class="m-i-i-input" value="{{methodInfo.allMoney}}" />
+        <text class="m-i-i-unit">万</text>
+      </view>
+    </view>
+    <view class="method-item">
+      <view class="m-i-i-name">商贷年限</view>
+      <view class="m-i-i-value">
+        <picker class="m-i-i-input" value="{{yearsIndex}}" range="{{yearsList}}">
+          <view class="picker">{{yearsList[yearsIndex]}}</view>
+        </picker>
+        <text class="m-i-i-unit">></text>
+      </view>
+    </view>
+    <view class="method-item">
+      <view class="m-i-i-name">商贷利率</view>
+      <view class="m-i-i-value">
+        <input class="m-i-i-input" value="{{methodInfo.rates}}" />
+      </view>
+    </view>
+  </view>
+  <view class="cal-btn" bindtap="calAction">开始计算</view>
+</view>

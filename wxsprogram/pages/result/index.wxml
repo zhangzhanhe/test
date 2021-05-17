@@ -1,0 +1,24 @@
+<view class="container">
+  <view class="nav-list">
+    <view class="nav-item active">等额本息</view>
+    <view class="nav-item">等额本金</view>
+    <view class="nav-item">对比参考</view>
+  </view>
+	<view class="main-info">
+    <view class="main-des">
+      <view class="main-item">
+        <view class="m-i-name">贷款总额</view>
+        <view class="m-i-value">{{detailInfo.total}}</view>
+      </view>
+      <view class="main-item">
+        <view class="m-i-name">贷款利息</view>
+        <view class="m-i-value">{{detailInfo.interest}}</view>
+      </view>
+      <view class="main-item">
+        <view class="m-i-name">贷款年限</view>
+        <view class="m-i-value">{{detailInfo.years}}</view>
+      </view>
+    </view>
+	</view>
+  <view class="main-tips" wx:if="{{methodType !=3}}"><text>每月还款金额不变</text>，其中还款的本金逐月递增，利息逐月递减。计算结果仅供参考。</view>
+</view>
