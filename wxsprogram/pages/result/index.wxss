@@ -1,0 +1,41 @@
+.container{
+	padding: 0 30rpx;
+}
+.sum-result .s-r-i-name{
+	margin-top: 30rpx;
+	font-size: 28rpx;
+	font-weight: bold;
+	color: red;
+}
+.sum-result .s-r-i-detail{
+	margin-top: 10rpx;
+}
+.sum-result .s-r-i-detail .s-r-i-d-t{
+	margin-left: 20rpx;
+}
+.nav-list-wrapper{
+	margin-top: 30rpx;
+}
+.nav-list-wrapper .n-l-w-title{
+	font-weight: bold;
+	margin-bottom: 20rpx;
+}
+.nav-table{
+	display: table;
+	width: 100%;
+	border-collapse: collapse;
+	box-sizing: border-box;
+}
+.nav-table .nav-t-tr{
+	display: table-row;
+	height: 92rpx;
+}
+.nav-table .nav-t-th,.nav-table .nav-t-td{
+	display: table-cell;
+	border: 1rpx solid #ddd;
+	text-align: center;
+	vertical-align: middle;
+}
+.nav-table .nav-t-th{
+	font-weight: bold;
+}

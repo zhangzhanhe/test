@@ -1,0 +1,68 @@
+问：前端安全都有啥，csrf如何预防，还有别的吗？
+答：前端安全最主要的应该就是csrf和xss，xss大概可以分为存储型和反射型，存储型的危害要大一些，要出现在让用户输入数据，供其他浏览此页的用户进行查看的地方，包括留言、评论、博客日志和各类表单等。应用程序从数据库中查询数据，在页面中显示出来，攻击者在相关页面输入恶意的脚本数据后，用户浏览此类页面时就可能受到攻击。反射型XSS主要做法是将脚本代码加入URL地址的请求参数里，请求参数进入程序后在页面直接输出，用户点击类似的恶意链接就可能受到攻击。针对xss其实能够做的就是不相信用户输入，对用户的输入采取转义和过滤特殊字符，不直接在页面执行用户的输入。
+	csrf是指的利用钓鱼网站或者“中毒”网站发送一些目标网站的“合法”请求，达到伪造用户用途的一种方式。这种方式的预防可以将验证用户身份信息走token的模式，然后设置token有效性，除了token简单点也可以直接走reffer验证。
+	其实除了以上两种，还有dos攻击、sql注入、会话劫持、ARP欺骗（伪造成网关）、http host等等。
+
+问：跨域都有啥，各种跨域适应的场景；
+答：跨域其实主要是域名、协议不同的场景下，xhr请求无法访问的情况，最初解决这个可以用jsonp的方式，大概就是将这些请求以js文件的形式发出，但这种方式其实并不友好，现在针对这个问题后端配置一下就可以结局了。
+
+问：针对动画卡顿，有没有啥优化操作，如何监控动画性能。
+答：动画这方面了解的不多，优化操作感觉可以多用css来完成动画可能会好一点，然后可以开启硬件加速（GPU，显卡，利用3d的一些css属性可以触发），针对不性能监控，chrome的Performance功能（能够监控FPS、CPU 以及 NET）应该可以。
+
+问：如何判断数组？
+答：可以用isArray、Object.prototype.toString.call(val)，还有instanceof。
+
+问：VUE如何做性能优化？
+答：有语法优化，比如for循环的key，还有v-show/v-if在适当的场景使用，computed和watch的适当场景使用，以及避免频繁的改变数据值，还有适当的提取功能组件（包括样式）；除了语法方面，项目大了之后可以考虑图片压缩和懒加载、路由懒加载，插件按需引用，或者是服务端渲染。
+
+问: http2对比http有哪些改变？
+答: http2就是为了解决http痛点而出生的。http主要有并发限制（浏览器客户端在同一时间，针对同一域名下的请求有一定数量限制，超过限制数目的请求会被阻塞），头部会随着cookie等增加越来越大，而且每个请求都携带，每一个链接都需要进行握手，无法保持连接，导致浪费资源还小了低，其实在http到http2的过程中，还有一个开拓者SPDY，这个也可以看成是http2的前身，google搞出来的，目的解决http1.x的痛点，即延迟和安全性。
+
+问：VUE3对比VUE2的改变？
+答：1、vue-cli3是构建在 webpack 和 webpack-dev-server 之上的；
+   2、vue-cli3的项目目录结构也不同于vue-cli2，vue-cli3的config 、 build 、 static 目录，新增了 public 目录，将根目录下的 index.html 放置在 public 目录下；
+   3、
+
+问：Array.from可以将哪些数据转换成数组？
+答：所有可以迭代的变量，比如Strings、Map、Set、arguments、Generators、Typed Arrays、NodeList；
+
+问：js es6 map 与 原生对象区别？
+答：object和Map存储的都是键值对组合。但是：object的键的类型是字符串，map的键的类型可以是任意类型；另外注意，object获取键值使用Object.keys（返回数组），Map获取键值使用 map变量.keys() (返回迭代器)。
+
+问：如何监听页面是否在可视区域？
+答：可以使用document.visibilityState属性，该属性有hidden页面彻底不可见，visible页面至少一部分可见，这个属性还有对应的监听事件，visibilitychange。因此，可以通过监听这个事件（通过document.addEventListener()方法或document.onvisibilitychange属性），跟踪页面可见性的变化
+
+问: position 的值 relative 和 absolute 定位原点是?
+答：定位点都是padding的左上角，但absolute其实有一个有意思的地方，若是设置了属性为absolute，但不设定top和left，则他会随着前面的文档流向下排，但之后的文档流就不会被他影响占位，由于有一定的文档流现象，他不再是padding左上角定位，而是content的左上角。
+
+问：CSS 多列等高如何实现？
+答：1、利用padding-bottom|margin-bottom正负值相抵，不会影响页面布局的特点。设置父容器设置超出隐藏（overflow:
+hidden），这样父容器的高度就还是它里面的列没有设定padding-bottom时的高度，当它里面的任一列高度增加了，则
+父容器的高度被撑到里面最高那列的高度，其他比这列矮的列会用它们的padding-bottom补偿这部分高度差。
+2、利用table-cell所有单元格高度都相等的特性，来实现多列等高。
+3、利用flex布局中项目align-items属性默认为stretch，如果项目未设置高度或设为auto，将占满整个容器的高度
+的特性，来实现多列等高。
+4、使用flex布局，设置主轴为竖轴，第二个div的flex-grow为1
+
+问：width:auto 和 width:100%的区别？
+答：width:100%会使元素box的宽度等于父元素的contentbox的宽度，width:auto会使元素撑满整个父元素，margin、border、padding、content区域会自动分配水平空间。
+
+问：BFC是什么，BFC属性有哪些？
+答：BFC(block formatting context）：简单来说，BFC就是一种属性，这种属性会影响着元素的定位以及与其兄弟元素之间的相互作用。 影响的有1、浮动元素，float 除 none 以外的值； 2、绝对定位元素，position（absolute，fixed）； 3、display 为以下其中之一的值 inline-blocks，table-cells，table-captions； 4、overflow 除了 visible 以外的值（hidden，auto，scroll）。
+
+问：overflow:scroll 时不能平滑滚动的问题怎么处理？
+答：以下代码可解决这种卡顿的问题：-webkit-overflow-scrolling:touch;是因为这行代码启用了硬件加速特性，所以滑动很流
+畅。
+
+问：WebAssembly？
+答：这个是为了解决前端性能问题的一个方案，可以采用一些用C和Rust编写的方法，然后js后面直接调用并执行这个方法，由于执行的是编译后的方法，不仅下载速度快，执行也会更快。
+
+问：webPack可以优化项目的地方？
+答：针对单页项目，可以考虑按需加载，利用babel-plugin-syntax-dynamic-import插件
+
+问：ES6的亮点？
+答：箭头函数、promise、展开表达式、Object.keys()、Object.assign、函数默认值和rest还有Symbol。
+
+问：前端缓存？
+答：前端缓存分为强缓存和协商缓存，强缓存就是不管三七二十一，只要符合规则就缓存了，Expires、Cache-Control 和 Pragma 3 个 Header 属性共同来控制，协商缓存就是需要去服务器问一下，有ETag/If-None-Match和Last-Modified/If-Modified-Since控制。
+

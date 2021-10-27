@@ -1,5 +1,5 @@
 //等额本息计算
-var benxi = (type, num, year, lilv) => {
+var benxi = ( num, year, lilv) => {
     //每月月供额=〔贷款本金×月利率×(1＋月利率)＾还款月数〕÷〔(1＋月利率)＾还款月数-1〕
     var mouth = parseInt(year) * 12,
         mouthlilv = parseFloat(lilv) / 12,
@@ -50,7 +50,7 @@ var benxi = (type, num, year, lilv) => {
     };
 };
 //等额本金计算
-var benjin = (type, num, year, lilv) => {
+var benjin = ( num, year, lilv) => {
     var mouth = parseInt(year) * 12,
         mouthlilv = parseFloat(lilv) / 12,
         dknum = parseFloat(num) * 10000,
@@ -123,8 +123,22 @@ const formatNumber = n => {
     return n[1] ? n : `0${n}`
 }
 
+const objToUrlParams = (obj) =>{
+    let str = '';
+    Object.keys(obj).forEach((item)=>{
+        str = `${str}${item}=${obj[item]}&`;
+    });
+    return str;
+}
+
+const numToFixed = (num,fixed = 2) =>{
+    return (num*1).toFixed(0);
+}
+
 module.exports = {
-    formatTime,
     benxi,
-    benjin
+    benjin,
+    objToUrlParams,
+    formatTime,
+    numToFixed
 }

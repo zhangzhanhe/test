@@ -21,7 +21,7 @@
         </radio-group>
       </view>
     </view>
-    <block wx:if="{{methodInfo.methodType == 2}}">
+    <block wx:if="{{methodType == 2}}">
       <view class="method-item">
         <view class="m-i-i-name">房屋总价</view>
         <view class="m-i-i-value">
@@ -40,14 +40,14 @@
     <view class="method-item">
       <view class="m-i-i-name">商贷金额</view>
       <view class="m-i-i-value">
-        <input class="m-i-i-input" value="{{methodInfo.allMoney}}" />
+        <input class="m-i-i-input" model:value="{{allMoney}}" />
         <text class="m-i-i-unit">万</text>
       </view>
     </view>
     <view class="method-item">
       <view class="m-i-i-name">商贷年限</view>
       <view class="m-i-i-value">
-        <picker class="m-i-i-input" value="{{yearsIndex}}" range="{{yearsList}}">
+        <picker class="m-i-i-input" value="{{yearsIndex}}" range="{{yearsList}}" bindchange="changeYear">
           <view class="picker">{{yearsList[yearsIndex]}}</view>
         </picker>
         <text class="m-i-i-unit">></text>
@@ -56,7 +56,7 @@
     <view class="method-item">
       <view class="m-i-i-name">商贷利率</view>
       <view class="m-i-i-value">
-        <input class="m-i-i-input" value="{{methodInfo.rates}}" />
+        <input class="m-i-i-input" model:value="{{rates}}" />
       </view>
     </view>
   </view>

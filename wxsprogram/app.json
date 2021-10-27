@@ -1,6 +1,8 @@
 {
+  "entryPagePath": "pages/index/index",
   "pages":[
-    "pages/index/index"
+    "pages/index/index",
+    "pages/result/index"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -9,5 +11,11 @@
     "navigationBarTextStyle":"black"
   },
   "style": "v2",
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "plugins": {
+    "etcp-plugin":{
+      "version":"dev-59bbba7fa2cdf97fdf73b5573546d5ed",
+      "provider":"wx9c7835f7d0daa38d"
+    }
+  }
 }

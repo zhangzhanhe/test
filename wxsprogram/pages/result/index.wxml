@@ -1,24 +1,41 @@
 <view class="container">
-  <view class="nav-list">
-    <view class="nav-item active">等额本息</view>
-    <view class="nav-item">等额本金</view>
-    <view class="nav-item">对比参考</view>
-  </view>
-	<view class="main-info">
-    <view class="main-des">
-      <view class="main-item">
-        <view class="m-i-name">贷款总额</view>
-        <view class="m-i-value">{{detailInfo.total}}</view>
-      </view>
-      <view class="main-item">
-        <view class="m-i-name">贷款利息</view>
-        <view class="m-i-value">{{detailInfo.interest}}</view>
-      </view>
-      <view class="main-item">
-        <view class="m-i-name">贷款年限</view>
-        <view class="m-i-value">{{detailInfo.years}}</view>
+  <view class="sum-result">
+    <view class="sum-r-th">
+      <view class="s-r-i-name">等额本息</view>
+      <view class="s-r-i-detail">
+        <text class="s-r-i-d-des">还款总额：{{bxResult.total}}</text>
+        <text class="s-r-i-d-des s-r-i-d-t">利息总额：{{bxResult.lxTotal}}</text>
       </view>
     </view>
-	</view>
-  <view class="main-tips" wx:if="{{methodType !=3}}"><text>每月还款金额不变</text>，其中还款的本金逐月递增，利息逐月递减。计算结果仅供参考。</view>
+    <view class="sum-r-item">
+      <view class="s-r-i-name">等额本金</view>
+      <view class="s-r-i-detail">
+        <text class="s-r-i-d-des">还款总额：{{bjResult.total}}</text>
+        <text class="s-r-i-d-des s-r-i-d-t">利息总额：{{bjResult.lxTotal}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="nav-list-wrapper">
+    <view class="n-l-w-title">还款详细：</view>
+    <view class="nav-table">
+      <view class="nav-t-tr">
+        <view class="nav-t-th">还款月份</view>
+        <view class="nav-t-th">本息本金</view>
+        <view class="nav-t-th">本息利息</view>
+        <view class="nav-t-th">本金本金</view>
+        <view class="nav-t-th">本金利息</view>
+        <view class="nav-t-th">利息差额</view>
+        <view class="nav-t-th">利息累差</view>
+      </view>
+      <view class="nav-t-tr" wx:for="{{detailList}}" wx:key="index">
+        <view class="nav-t-td">第{{index+1}}月</view>
+        <view class="nav-t-td">{{item.bxValue}}</view>
+        <view class="nav-t-td">{{item.bxlxValue}}</view>
+        <view class="nav-t-td">{{item.bjValue}}</view>
+        <view class="nav-t-td">{{item.bjlxValue}}</view>
+        <view class="nav-t-td">{{item.lxDiffValue}}</view>
+        <view class="nav-t-td">{{item.lxDiffTotal}}</view>
+      </view>
+    </view>
+  </view>  
 </view>

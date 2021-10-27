@@ -405,8 +405,6 @@ function clone(arr){
 new Array(100).fill('测试') //es6的方法
 array = '测试,'.repeat(100).split(','); array.pop(); //es6的方法
 array = new Array(101).join('测试,').split(','); array.pop(); //老方法
-function dedupe(array){return Array.from(new Set(array));} //数组去重
-[...new Set(arr)]//数组去重
 new Set([...a, ...b]) //数组合并
 new Set([...a].filter(x => b.has(x))); //数组求交集
 new Set([...a].filter(x => !b.has(x))); //数组求差级
@@ -459,3 +457,6 @@ function getMonthDays(time){
     }
     return new Date(year,month,0).getDate();
 }
+//有关url参数处理的两个函数。
+new URL();
+new URLSearchParams();
